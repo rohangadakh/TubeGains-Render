@@ -7,12 +7,18 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 // Middleware
-app.use(cors({
+const corsOptions = {
   origin: ['http://localhost:3000', 'https://tubegains-render.onrender.com'],
-  methods: ['GET', 'POST'],
+  methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: ['Content-Type'],
   credentials: true,
-}));
+};
+
+app.use(cors(corsOptions)); // Apply the CORS middleware
 app.use(express.json());
+
+// Handle preflight requests
+app.options('*', cors(corsOptions));
 
 app.post("/check-yt-ad", async (req, res) => {
   const videoUrl = req.body.videoUrl;
