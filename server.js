@@ -7,7 +7,11 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: ['http://localhost:3000', 'https://tubegains-render.onrender.com'],
+  methods: ['GET', 'POST'],
+  credentials: true,
+}));
 app.use(express.json());
 
 app.post("/check-yt-ad", async (req, res) => {
@@ -30,11 +34,9 @@ app.post("/check-yt-ad", async (req, res) => {
         "--single-process",
         "--disable-gpu"
       ],
-      executablePath:   
-
-      process.env.NODE_ENV === "production"
+      executablePath: process.env.NODE_ENV === "production"
         ? process.env.PUPPETEER_EXECUTABLE_PATH
-        : puppeteer.executablePath(),   
+        : puppeteer.executablePath(),
     });
 
     const page = await browser.newPage();
