@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const puppeteer = require("puppeteer");
+require("dotenv").config();
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -29,7 +30,11 @@ app.post("/check-yt-ad", async (req, res) => {
         "--single-process",
         "--disable-gpu"
       ],
-      headless: true,
+      executablePath:   
+
+      process.env.NODE_ENV === "production"
+        ? process.env.PUPPETEER_EXECUTABLE_PATH
+        : puppeteer.executablePath(),   
     });
 
     const page = await browser.newPage();
