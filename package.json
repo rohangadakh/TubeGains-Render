@@ -5,9 +5,7 @@
   "main": "server.js",
   "private": true,
   "scripts": {
-    "start": "node server.js",
-    "postinstall": "npx puppeteer install"
-  },
+    "start": "node server.js",  },
   "dependencies": {
     "express": "^4.21.0",
     "cors": "^2.8.5",
