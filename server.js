@@ -1,6 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-const { chromium } = require("playwright");
+const chromium = require("chrome-aws-lambda"); // Use chrome-aws-lambda instead of Playwright's chromium
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -21,9 +21,10 @@ app.post("/check-yt-ad", async (req, res) => {
   }
 
   try {
-    const browser = await chromium.launch({
-      headless: true,
-      args: ["--no-sandbox", "--disable-setuid-sandbox"],
+    const browser = await chromium.puppeteer.launch({
+      args: [...chromium.args, "--no-sandbox", "--disable-setuid-sandbox"],
+      executablePath: await chromium.executablePath, // Use chrome-aws-lambda's executablePath
+      headless: chromium.headless, // Set headless to chromium.headless for compatibility
     });
 
     const page = await browser.newPage();
@@ -38,7 +39,7 @@ app.post("/check-yt-ad", async (req, res) => {
     console.error("Error checking monetization status:", error);
     if (error.message.includes("Executable doesn't exist")) {
       return res.status(500).json({
-        error: "Browser executable not found. Ensure Playwright is installed correctly.",
+        error: "Browser executable not found. Ensure Playwright/Chromium is installed correctly.",
       });
     }
     res.status(500).json({ error: "Internal Server Error" });
