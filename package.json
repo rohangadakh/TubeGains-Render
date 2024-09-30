@@ -6,12 +6,12 @@
   "private": true,
   "scripts": {
     "start": "node server.js",
-    "postinstall": "npx playwright install" // Update to install Playwright browsers
+    "postinstall": "npx playwright install" 
   },
   "dependencies": {
     "express": "^4.21.0",
     "cors": "^2.8.5",
-    "playwright": "^1.30.0" // Replace puppeteer with playwright
+    "playwright": "^1.30.0" 
   },
   "engines": {
     "node": ">=14.x"
