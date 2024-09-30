@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "start": "node server.js",
-     "postinstall": "puppeteer install"
+     "postinstall": "npx puppeteer install"
   },
   "dependencies": {
     "express": "^4.21.0",
