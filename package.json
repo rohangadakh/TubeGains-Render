@@ -1,17 +1,18 @@
 {
   "name": "yt-monetization-checker",
   "version": "1.0.0",
-  "description": "A YouTube monetization status checker using Playwright",
+  "description": "A YouTube monetization status checker using Playwright and chrome-aws-lambda",
   "main": "server.js",
   "private": true,
   "scripts": {
     "start": "node server.js",
-    "postinstall": "npx playwright install" 
+    "postinstall": "npx playwright install"
   },
   "dependencies": {
     "express": "^4.21.0",
     "cors": "^2.8.5",
-    "playwright": "^1.30.0" 
+    "playwright": "1.6.2",
+    "chrome-aws-lambda": "5.5.0"
   },
   "engines": {
     "node": ">=14.x"
