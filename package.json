@@ -21,10 +21,7 @@
   },
   
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "node server.js",  
   },
   "eslintConfig": {
     "extends": [
@@ -47,7 +44,8 @@
   "devDependencies": {
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.47",
-    "tailwindcss": "^3.4.13"
+    "tailwindcss": "^3.4.13",
+    "concurrently": "^7.2.0"  // For running client and server concurrently
   },
   "proxy": "http://img.youtube.com"
 }
