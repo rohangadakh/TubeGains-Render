@@ -19,20 +19,22 @@ app.post("/check-yt-ad", async (req, res) => {
   }
 
   try {
-    const browser = await puppeteer.launch({
-      executablePath: puppeteer.executablePath(), // Dynamically set executable path
-      args: [
-        "--no-sandbox",
-        "--disable-setuid-sandbox",
-        '--disable-dev-shm-usage',
-        '--disable-accelerated-2d-canvas',
-        '--no-first-run',
-        '--no-zygote',
-        '--single-process',
-        '--disable-gpu'
-      ],
-      headless: true,
-    });
+   const browser = await puppeteer.launch({
+  executablePath: process.env.CHROME_PATH || puppeteer.executablePath(), 
+  args: [
+    "--no-sandbox",
+    "--disable-setuid-sandbox",
+    "--disable-dev-shm-usage",
+    "--disable-accelerated-2d-canvas",
+    "--no-first-run",
+    "--no-zygote",
+    "--single-process",
+    "--disable-gpu",
+    "--headless"
+  ],
+  headless: true,
+});
+
 
     const page = await browser.newPage();
     await page.goto(videoUrl, { waitUntil: "networkidle2", timeout: 60000 });
