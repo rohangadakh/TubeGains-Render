@@ -1,18 +1,17 @@
 {
   "name": "yt-monetization-checker",
   "version": "1.0.0",
-  "description": "A YouTube monetization status checker using Puppeteer",
+  "description": "A YouTube monetization status checker using Playwright",
   "main": "server.js",
   "private": true,
   "scripts": {
     "start": "node server.js",
-     "postinstall": "npx puppeteer install"
+    "postinstall": "npx playwright install" // Update to install Playwright browsers
   },
   "dependencies": {
     "express": "^4.21.0",
     "cors": "^2.8.5",
-    "puppeteer-extra": "^3.3.4",
-    "puppeteer-extra-plugin-stealth": "^2.11.1"
+    "playwright": "^1.30.0" // Replace puppeteer with playwright
   },
   "engines": {
     "node": ">=14.x"
