@@ -3,13 +3,11 @@ const cors = require("cors");
 const puppeteer = require("puppeteer-extra");
 const stealthPlugin = require("puppeteer-extra-plugin-stealth");
 
-// Use the stealth plugin to minimize detection
 puppeteer.use(stealthPlugin());
 
 const app = express();
 const port = process.env.PORT || 5000;
 
-// Middleware
 app.use(cors());
 app.use(express.json());
 
@@ -21,8 +19,8 @@ app.post("/check-yt-ad", async (req, res) => {
   }
 
   try {
-    // Use Puppeteer with bundled Chromium
     const browser = await puppeteer.launch({
+      executablePath: puppeteer.executablePath(), // Dynamically set executable path
       args: [
         "--no-sandbox",
         "--disable-setuid-sandbox",
@@ -45,12 +43,11 @@ app.post("/check-yt-ad", async (req, res) => {
     await browser.close();
     res.json({ monetizationStatus: hasAds ? "Monetized" : "Not Monetized" });
   } catch (error) {
-    console.error("Error checking monetization status:", error);
-    res.status(500).json({ error: "Internal Server Error" });
+    console.error("Error checking monetization status:", error.message);
+    res.status(500).json({ error: "Internal Server Error", details: error.message });
   }
 });
 
-// Start the server
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
