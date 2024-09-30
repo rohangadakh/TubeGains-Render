@@ -12,6 +12,6 @@
     "start": "node server.js"
   },
   "engines": {
-    "node": ">=14.x"  // Specify your Node.js version
+    "node": ">=14.x"  
   }
 }
