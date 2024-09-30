@@ -21,8 +21,8 @@
   },
   
   "scripts": {
-    "start": "node server.js",  
-  },
+  "start": "node server.js"
+},
   "eslintConfig": {
     "extends": [
       "react-app",
